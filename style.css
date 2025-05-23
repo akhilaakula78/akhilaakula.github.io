@@ -214,49 +214,84 @@ section {
   font-size: 0.95rem;
 }
 
+
 /* ============================
    Experience Section
 ============================= */
-.experience-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 2rem;
-}
-
-.experience-card {
+.experience-single-card {
   background-color: white;
   border: 1px solid var(--border-light);
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.experience-card h3 {
+.experience-entry {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--border-light);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 8px;
+  position: relative;
+}
+
+.experience-entry:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* WORKING HOVER EFFECTS */
+.experience-entry:hover {
+  background-color: #f8f9fa !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08) !important;
+  border-left: 4px solid var(--primary) !important;
+  padding-left: 1.95rem !important;
+}
+
+.experience-entry h3 {
   margin-top: 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: var(--primary);
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.experience-entry h3:hover {
+  color: #005f8e !important;
 }
 
 .experience-time {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
   margin-bottom: 1rem;
+  font-weight: 600;
 }
 
-.experience-card ul {
-  padding-left: 1.25rem;
+.experience-entry ul {
+  padding-left: 1.5rem;
   margin-bottom: 1rem;
+  padding-right: 1.5rem;
 }
 
-.experience-card li {
+.experience-entry li {
   margin-bottom: 0.5rem;
-  line-height: 1.5;
+  line-height: 1.6;
+  font-size: 0.95rem;
 }
 
 .tech-used {
   font-size: 0.9rem;
   color: #374151;
+  background: #f8f9fa;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border-left: 3px solid var(--primary);
 }
+
 
 /* ============================
    Education Section
@@ -282,13 +317,68 @@ section {
 }
 
 .education-entry p {
-  margin: 0.5rem 0;
+  margin: 1rem 0;
   color: var(--text-main);
   font-size: 0.95rem;
 }
 
+.extracurricular-section {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 2px solid #f0f4f8;
+  background: linear-gradient(135deg, #f8fafb 0%, #f1f5f9 100%);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.extracurricular-title {
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.05rem;
+  text-align: left;
+  border-left: 4px solid var(--primary);
+  padding-left: 1rem;
+}
+
+.activity-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.activity-list li {
+  position: relative;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-left: 3px solid var(--primary);
+  line-height: 1.5;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.activity-list li:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.activity-list li:before {
+  content: "▸";
+  color: var(--primary);
+  font-weight: bold;
+  position: absolute;
+  left: 1rem;
+  top: 0.75rem;
+  font-size: 1.1rem;
+}
+
 /* ============================
-   Project Modal - FIXED FOR 50/50 SPLIT
+   Project Modal - 50/50 Split
 ============================= */
 .project-modal {
   display: none;
@@ -343,16 +433,14 @@ section {
   color: #333;
 }
 
-/* CRITICAL FIX: Proper 50/50 split */
 .project-modal-body {
   display: flex;
   height: 100%;
   width: 100%;
 }
 
-/* Left Column - Exactly 50% width for image slideshow */
 .project-modal-left {
-  flex: 0 0 50%; /* Fixed at 50% width */
+  flex: 0 0 50%;
   background-color: #f8f9fa;
   display: flex;
   flex-direction: column;
@@ -360,41 +448,37 @@ section {
   justify-content: center;
   border-right: 1px solid #e9ecef;
   position: relative;
-  overflow: hidden; /* Prevent image overflow */
+  overflow: hidden;
 }
 
-/* Right Column - Exactly 50% width for project information */
 .project-modal-right {
-  flex: 0 0 50%; /* Fixed at 50% width */
+  flex: 0 0 50%;
   background: white;
   display: flex;
   flex-direction: column;
 }
 
-/* Slide container - constrain the image area */
 .slide-container {
   position: relative;
   width: 100%;
-  height: calc(100% - 60px); /* Leave space for dots */
+  height: calc(100% - 60px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
 }
 
-/* Critical: Constrain the slide image to fit within its container */
 #slide-image {
   max-width: 100%;
   max-height: 100%;
   width: auto;
   height: auto;
-  object-fit: contain; /* Maintain aspect ratio */
+  object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   background: white;
 }
 
-/* Navigation arrows positioning */
 .slide-nav {
   position: absolute;
   top: 50%;
@@ -424,7 +508,6 @@ section {
   right: 15px;
 }
 
-/* Slide Dots - positioned at bottom of left column */
 #slide-dots {
   position: absolute;
   bottom: 20px;
@@ -448,7 +531,6 @@ section {
   background: var(--primary);
 }
 
-/* Project information styling */
 .project-info {
   padding: 2rem;
   height: 100%;
@@ -480,7 +562,6 @@ section {
   color: var(--text-muted);
 }
 
-/* Action Buttons */
 .project-actions {
   display: flex;
   gap: 1rem;
@@ -527,7 +608,6 @@ section {
   margin: 0;
 }
 
-/* Project Thumbnails */
 .project-thumbnails {
   display: flex;
   flex-wrap: wrap;
@@ -661,7 +741,7 @@ section {
 }
 
 /* ============================
-   Certificate PDF Modal
+   Enhanced Certificate PDF Modal
 ============================= */
 .pdf-modal {
   display: none;
@@ -671,38 +751,96 @@ section {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.8);
   justify-content: center;
   align-items: center;
 }
 
 .pdf-modal.open {
   display: flex;
+  animation: fadeIn 0.3s ease-out;
 }
 
 .pdf-container {
   position: relative;
   width: 90%;
   height: 90%;
+  max-width: 1000px;
+  max-height: 800px;
   background: white;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.3s ease-out;
 }
 
 .pdf-container iframe {
   width: 100%;
   height: 100%;
+  border-radius: 8px;
+}
+
+.pdf-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: white;
+  border-radius: 8px;
+}
+
+#cert-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
 }
 
 #closePdf {
   position: absolute;
-  top: 10px;
-  right: 12px;
-  background: transparent;
-  font-size: 1.5rem;
+  top: 15px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 1.8rem;
   border: none;
   color: #333;
   cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+#closePdf:hover {
+  background: white;
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* ============================
@@ -933,9 +1071,22 @@ section {
   text-decoration: none;
 }
 
-/* Hide dashboard button when not needed */
 .action-btn.hidden {
   display: none !important;
+}
+
+
+.experience-entry h3:hover {
+  color: #005f8e;
+  transition: color 0.3s ease;
+}
+
+/* Active/Selected Experience Entry */
+.experience-entry.active,
+.experience-entry.selected {
+  background-color: #ebf4fb;
+  border-left: 4px solid var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 119, 181, 0.1);
 }
 
 
@@ -947,7 +1098,7 @@ section {
 }
 
 /* ============================
-   Media Queries - CONSOLIDATED
+   Media Queries - Mobile Responsiveness
 ============================= */
 @media (max-width: 900px) {
   .skills-grid {
@@ -1022,7 +1173,75 @@ section {
     gap: 1.25rem;
   }
 
-  /* Mobile Project Modal - Proper 50/50 Height Split with Scrollable Content */
+  .experience-single-card {
+    padding: 1.5rem;
+    margin: 0 1rem;
+  }
+
+  .experience-entry:active,
+  .experience-entry:focus {
+    background-color: #f8f9fa;
+    transform: translateY(-1px);
+  }
+  
+  .experience-entry {
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .experience-entry h3 {
+    font-size: 1.2rem;
+  }
+  
+  .experience-entry li {
+    font-size: 0.9rem;
+  }
+  
+  .tech-used {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+
+  .extracurricular-section {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .activity-list li {
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem 0.6rem 2rem;
+  }
+  
+  .activity-list li:before {
+    left: 0.8rem;
+    top: 0.6rem;
+  }
+  
+  .extracurricular-title {
+    font-size: 1rem;
+    padding-left: 0.8rem;
+  }
+
+  /* Mobile Certificate Modal */
+  .pdf-container {
+    width: 95%;
+    height: 85%;
+    border-radius: 8px;
+  }
+  
+  #closePdf {
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    width: 35px;
+    height: 35px;
+  }
+  
+  .pdf-container img {
+    padding: 0.5rem;
+  }
+
+  /* Mobile Project Modal */
   .project-modal-content {
     width: 95%;
     height: 90%;
@@ -1033,37 +1252,32 @@ section {
     height: 100%;
   }
   
-  /* Top section (slides) - Exactly 50% of modal height - FIXED HEIGHT */
   .project-modal-left {
-    flex: 0 0 50%; /* Fixed at 50% height in mobile */
+    flex: 0 0 50%;
     width: 100%;
     border-right: none;
     border-bottom: 1px solid #e9ecef;
-    overflow: hidden; /* Prevent any overflow */
+    overflow: hidden;
   }
   
-  /* Bottom section (content) - Exactly 50% of modal height - SCROLLABLE */
   .project-modal-right {
-    flex: 0 0 50%; /* Fixed at 50% height in mobile */
+    flex: 0 0 50%;
     width: 100%;
-    overflow: hidden; /* Container doesn't scroll */
+    overflow: hidden;
   }
   
-  /* Ensure slide container fills the 50% space properly */
   .slide-container {
-    height: calc(100% - 40px); /* Leave space for dots */
+    height: calc(100% - 40px);
     padding: 0.5rem;
-    overflow: hidden; /* Images stay contained */
+    overflow: hidden;
   }
   
-  /* Adjust slide image for mobile */
   #slide-image {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
   }
   
-  /* Adjust navigation arrows for mobile */
   .slide-nav {
     padding: 0.5rem 0.8rem;
     font-size: 1.5rem;
@@ -1077,7 +1291,6 @@ section {
     right: 10px;
   }
   
-  /* Adjust dots positioning for mobile */
   #slide-dots {
     bottom: 10px;
     gap: 6px;
@@ -1096,13 +1309,12 @@ section {
     padding: 0 !important;
   }
   
-  /* CRITICAL FIX: Make project info section scrollable */
   .project-info {
     padding: 1rem;
-    height: 100%; /* Fill the entire 50% bottom section */
-    max-height: 100%; /* Constrain to container */
-    overflow-y: auto; /* Enable vertical scrolling for text content */
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   
   #project-title {
@@ -1140,7 +1352,6 @@ section {
     grid-template-columns: 1fr;
   }
   
-  /* Extra small mobile adjustments */
   .project-modal-content {
     width: 98%;
     height: 95%;
@@ -1166,6 +1377,16 @@ section {
   .action-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
+  }
+
+  /* Extra small mobile certificate modal */
+  .pdf-container {
+    width: 98%;
+    height: 80%;
+  }
+  
+  .pdf-container img {
+    padding: 0.25rem;
   }
 }
 
