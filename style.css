@@ -1089,11 +1089,11 @@ section {
   }
 
   .recommendation-card {
-    width: 280px;
+    width: 280px !important;
   }
 
   .reco-text{
-    padding: 0;
+    padding: 0 !important;
   }
   
   /* CRITICAL FIX: Make project info section scrollable */
