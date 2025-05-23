@@ -933,6 +933,12 @@ section {
   text-decoration: none;
 }
 
+/* Hide dashboard button when not needed */
+.action-btn.hidden {
+  display: none !important;
+}
+
+
 /* ============================
    Mobile Navigation
 ============================= */
@@ -941,7 +947,7 @@ section {
 }
 
 /* ============================
-   Media Queries
+   Media Queries - CONSOLIDATED
 ============================= */
 @media (max-width: 900px) {
   .skills-grid {
@@ -1016,7 +1022,7 @@ section {
     gap: 1.25rem;
   }
 
-  /* Mobile Project Modal Adjustments */
+  /* Mobile Project Modal - Proper 50/50 Height Split with Scrollable Content */
   .project-modal-content {
     width: 95%;
     height: 90%;
@@ -1024,29 +1030,147 @@ section {
   
   .project-modal-body {
     flex-direction: column;
+    height: 100%;
   }
   
+  /* Top section (slides) - Exactly 50% of modal height - FIXED HEIGHT */
   .project-modal-left {
-    flex: 1;
+    flex: 0 0 50%; /* Fixed at 50% height in mobile */
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e9ecef;
+    overflow: hidden; /* Prevent any overflow */
   }
   
+  /* Bottom section (content) - Exactly 50% of modal height - SCROLLABLE */
   .project-modal-right {
-    flex: 0 0 300px;
+    flex: 0 0 50%; /* Fixed at 50% height in mobile */
+    width: 100%;
+    overflow: hidden; /* Container doesn't scroll */
   }
   
-  .project-info {
-    padding: 1.5rem;
+  /* Ensure slide container fills the 50% space properly */
+  .slide-container {
+    height: calc(100% - 40px); /* Leave space for dots */
+    padding: 0.5rem;
+    overflow: hidden; /* Images stay contained */
   }
-}
+  
+  /* Adjust slide image for mobile */
+  #slide-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  /* Adjust navigation arrows for mobile */
+  .slide-nav {
+    padding: 0.5rem 0.8rem;
+    font-size: 1.5rem;
+  }
+  
+  .prev-slide {
+    left: 10px;
+  }
+  
+  .next-slide {
+    right: 10px;
+  }
+  
+  /* Adjust dots positioning for mobile */
+  #slide-dots {
+    bottom: 10px;
+    gap: 6px;
+  }
+  
+  #slide-dots .dot {
+    width: 10px;
+    height: 10px;
+  }
 
-@media (min-width: 769px) {
-  section {
-    margin-bottom: 5rem;
+  .recommendation-card {
+    width: 280px;
+  }
+
+  .reco-text{
+    padding: 0;
+  }
+  
+  /* CRITICAL FIX: Make project info section scrollable */
+  .project-info {
+    padding: 1rem;
+    height: 100%; /* Fill the entire 50% bottom section */
+    max-height: 100%; /* Constrain to container */
+    overflow-y: auto; /* Enable vertical scrolling for text content */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+  
+  #project-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .project-meta-col {
+    margin-bottom: 1rem;
+  }
+  
+  .project-actions {
+    margin-bottom: 1rem;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  
+  .action-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .project-description {
+    margin-bottom: 1rem;
+  }
+  
+  .project-description p {
+    font-size: 0.85rem;
+    line-height: 1.4;
   }
 }
 
 @media (max-width: 600px) {
   .skills-grid {
     grid-template-columns: 1fr;
+  }
+  
+  /* Extra small mobile adjustments */
+  .project-modal-content {
+    width: 98%;
+    height: 95%;
+  }
+  
+  .project-thumb{
+    width: 320px;
+  }
+
+  .slide-nav {
+    padding: 0.4rem 0.6rem;
+    font-size: 1.2rem;
+  }
+  
+  .project-info {
+    padding: 0.75rem;
+  }
+  
+  #project-title {
+    font-size: 1.1rem;
+  }
+  
+  .action-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 769px) {
+  section {
+    margin-bottom: 5rem;
   }
 }
