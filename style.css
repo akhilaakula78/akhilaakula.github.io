@@ -217,38 +217,40 @@ section {
 /* ============================
    Experience Section Corrected
 ============================= */
-.experience-single-card {
-  background-color: white;
-  border: 1px solid var(--border-light);
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  max-width: 1000px;
+.experience-timeline {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  padding: 2rem 1rem;
+}
+
+.experience-left,
+.experience-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .experience-entry {
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  border-bottom: 2px solid var(--border-light);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border-radius: 8px;
+  background-color: transparent;
+  border-left: 4px solid var(--primary);
+  padding-left: 1.5rem;
   position: relative;
 }
 
-.experience-entry:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-}
-
-/* WORKING HOVER EFFECTS */
-.experience-entry:hover {
-  background-color: #f8f9fa !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08) !important;
-  border-left: 4px solid var(--primary) !important;
-  padding-left: 1.95rem !important;
+.experience-entry::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 10px;
+  width: 12px;
+  height: 12px;
+  background: var(--primary);
+  border-radius: 50%;
+  z-index: 1;
 }
 
 .experience-entry h3 {
@@ -260,7 +262,7 @@ section {
 }
 
 .experience-entry h3:hover {
-  color: #005f8e !important;
+  color: #005f8e;
 }
 
 .experience-time {
@@ -273,7 +275,6 @@ section {
 .experience-entry ul {
   padding-left: 1.5rem;
   margin-bottom: 1rem;
-  padding-right: 1.5rem;
 }
 
 .experience-entry li {
@@ -289,6 +290,13 @@ section {
   padding: 0.75rem;
   border-radius: 6px;
   border-left: 3px solid var(--primary);
+}
+
+/* Responsive stacking on smaller screens */
+@media (max-width: 900px) {
+  .experience-timeline {
+    grid-template-columns: 1fr;
+  }
 }
 
 
@@ -1396,3 +1404,4 @@ section {
     margin-bottom: 5rem;
   }
 }
+
